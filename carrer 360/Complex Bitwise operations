@@ -1,0 +1,98 @@
+/*
+Function Description
+
+Complete the calculate_the_maximum function in the editor below.
+
+calculate_the_maximum has the following parameters:
+
+1) int n: the highest number to consider
+2) int k: the result of a comparison must be lower than this number to be considered
+
+Prints
+
+Print the maximum values for the and, or and xor comparisons, each on a separate line.
+
+Input Format
+The only line contains 2-space seperated integers n and k.
+The only line contains  space-separated integers,  and .
+
+Constraints
+2<=n<=10pow3
+2<=k<=n
+Sample Input 0
+
+5 4
+Sample Output 0
+
+2
+3
+3
+Explanation 0
+n=5 k=4
+S={1,2,3,4,5}
+All possible values of  and  are:
+value at i=1 and at j+1=2 AND =0 OR=3 XOR=3
+value at i=1 and at j+1=3 AND =1 OR=3 XOR=2
+value at i=1 and at j+1=4 AND =0 OR=5 XOR=5
+value at i=1 and at j+1=5 AND =1 OR=5 XOR=4
+value at i=2 and at j+1=3 AND =2 OR=3 XOR=1
+value at i=2 and at j+1=4 AND =0 OR=6 XOR=6
+value at i=2 and at j+1=5 AND =0 OR=7 XOR=7
+value at i=3 and at j+1=4 AND =0 OR=7 XOR=7
+value at i=3 and at j+1=5 AND =1 OR=7 XOR=6
+value at i=4 and at j+1=5 AND =4 OR=5 XOR=1
+
+The maximum possible value of i&j  that is also <(k=4) is 2, so we print  2 on first line.
+
+The maximum possible value of i|j that is also <(k=4) is 3, so we print  3 on second line.
+
+The maximum possible value of i^j that is also <(k=4) is 3, so we print  3 on third line.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+
+void calculate_the_maximum(int x, int y) {
+  int i,j;
+  int sumand=0,sumand1=0,sumor=0,sumor1=0,sumxor=0,sumxor1=0;
+    for (i=1;i<=x;i++)
+        for (j=i;j<x;j++)
+            {
+           sumand=i&(j+1);
+             if (sumand < y && sumand1 < sumand)
+             {
+                 sumand1=sumand;
+             }
+             sumor=i|(j+1);
+            if (sumor < y && sumor1 < sumor)
+             {
+                 sumor1=sumor;
+             }
+            sumxor=i^(j+1);
+            if (sumxor < y && sumxor1 < sumxor)
+             {
+                 sumxor1=sumxor;
+             }
+            // printf("value at i=%d and at j+1=%d sum =%d\n",i,j+1,sumand );
+            printf("value at i=%d and at j+1=%d sum =%d\n",i,j+1,sumxor );
+                
+            }
+            printf("\n");
+            printf("%d\n",sumand1);//Write your code here.
+            printf("%d\n",sumor1);
+            printf("%d\n",sumxor1);
+}
+
+int main() {
+    int n, k;
+  
+    scanf("%d %d", &n, &k);
+    calculate_the_maximum(n, k);
+ 
+    return 0;
+}
