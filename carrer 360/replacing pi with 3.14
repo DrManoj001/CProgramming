@@ -1,0 +1,64 @@
+#include <stdio.h>
+int main()
+{
+char x[100],y[100];
+int i,j,pos=0;
+gets(x);
+for (i=0;x[i]!='\0';i++)
+{
+    if (x[i]=='p' &&  x[i+1]=='i')
+    {
+        pos=i;
+        break;
+    }
+    else
+    {
+        y[i]=x[i];
+    }
+}
+y[pos]='3';
+y[pos+1]='.';
+y[pos+2]='1';
+y[pos+3]='4';
+for (j=pos+4,i=pos+2;x[i]!='\0';j++,i++)
+{
+    y[j]=x[i];
+}
+puts(y);
+return 0;
+}
+
+
+
+
+#include <stdio.h>
+#include<string.h>
+void replacep(char y[],int startindex)
+{
+    if (y[startindex]=='\0' || y[startindex+1]=='\0')
+        return;
+    replacep(y,startindex+1);
+	if (y[startindex] == 'p' && y[startindex + 1] == 'i') {
+	for (int i = strlen(y); i >= startindex + 2; i--) {
+			y[i + 2] = y[i];
+		}
+
+		y[startindex] = '3';
+		y[startindex + 1] = '.';
+		y[startindex + 2] = '1';
+		y[startindex + 3] = '4';
+	
+}
+}
+void replacepi(char y[])
+{
+    replacep(y,0);
+}
+
+int main()
+{
+char x[]="pipimanoj";
+replacepi(x);
+puts(x);
+return 0;
+}
